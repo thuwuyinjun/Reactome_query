@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>API Overview</TITLE>
+</HEAD>
+<BODY>
+
+This is the reference driver implementation for <a href="http://neo4j.com">Neo4j</a>, it allows you to connect to a
+Neo4j server and interact with it.
+If you are using Java, this is generally the interface you'd use to integrate Neo4j in your application.
+
+<h3>Getting Connected</h3>
+
+<p>Once you have the driver and a connector on your classpath, you can establish sessions with Neo4j.</p>
+
+<pre><code>Driver driver = GraphDatabase.driver( "bolt://localhost", AuthTokens.basic( "neo4j", "p4ssw0rd" ) );
+try( Session session = driver.session() )
+{
+    StatementResult result = session.run( "RETURN 'hello, world!'" );
+    while( result.hasNext() )
+    {
+        Record record = result.next();
+        System.out.println( record.get(0).asString() );
+    }
+}
+</code></pre>
+
+Have a look at the <a href="org/neo4j/driver/v1/Driver.html" title="interface in org.neo4j"><code>Driver</code></a>class to get started.
+
+</BODY>
+</HTML>
